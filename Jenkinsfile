@@ -11,7 +11,7 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/devoteamhichamrahj/test-jenkins'
+        git clone 'https://github.com/devoteamhichamrahj/test-jenkins'
       }
     }
     stage('printing output') {
