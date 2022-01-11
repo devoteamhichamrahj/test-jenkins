@@ -9,29 +9,9 @@ pipeline {
     
   stages {
         
-    stage('Cloning Git') {
-      steps {
-         git 'https://github.com/devoteamhichamrahj/test-jenkins'
-      }
-    }
     stage('printing output') {
       steps{
-        echo "testing jenkins" 
-      }
-    }
-    
-    stage('remove image'){
-      steps{
-       sh "docker rmi devohichamrahj/test" 
-      }
-    }
-    
-    stage('build image') {
-      steps{
-        script{
-          docker.withRegistry('', registryCredential)
-          dockerImage.push()
-        }
+        sh "echo 'testing jenkins'" 
       }
     }
   }
