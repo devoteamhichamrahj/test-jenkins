@@ -24,7 +24,7 @@ pipeline {
 
     stage('Install dotenv') {
       steps {
-        sh 'npm install -g win-node-env'
+        sh 'npm install'
       }
     }
      
