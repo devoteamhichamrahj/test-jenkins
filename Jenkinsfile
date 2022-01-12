@@ -43,6 +43,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
          script {
+            sudo usermod -a -G docker jenkins
             docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
