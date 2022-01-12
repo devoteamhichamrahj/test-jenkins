@@ -33,6 +33,11 @@ pipeline {
         sh 'npm i -g mocha && npm test'
       }
     }
+    stage('giving role to docker') {
+      steps {
+        sh 'sudo usermod -a -G docker jenkins'
+      }
+    }
     stage('Building image') {
       steps{
         script {
@@ -40,11 +45,7 @@ pipeline {
         }
       }
     }
-    stage('giving role to docker') {
-      steps {
-        sh 'sudo usermod -a -G docker jenkins'
-      }
-    }
+    
     stage('Deploy Image') {
       steps{
          script {
