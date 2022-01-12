@@ -12,25 +12,25 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/ousshsn/authapp'
+        sh 'git clone "https://github.com/devoteamhichamrahj/test"'
       }
     }
         
     stage('Install dependencies') {
       steps {
-        bat 'npm install'
+        sh 'npm install'
       }
     }
 
     stage('Install dotenv') {
       steps {
-        bat 'npm install -g win-node-env'
+        sh 'npm install -g win-node-env'
       }
     }
      
     stage('Test') {
       steps {
-        bat 'npm test'
+        sh 'npm test'
       }
     }
     stage('Building image') {
