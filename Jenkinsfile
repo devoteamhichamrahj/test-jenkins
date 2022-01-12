@@ -12,7 +12,7 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/devoteamhichamrahj/test'
+        git 'https://github.com/devoteamhichamrahj/test-jenkins'
       }
     }
         
