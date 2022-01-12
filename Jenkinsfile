@@ -30,7 +30,7 @@ pipeline {
      
     stage('Test') {
       steps {
-        sh 'npm test'
+        sh 'sudo npm test'
       }
     }
     stage('Building image') {
