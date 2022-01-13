@@ -18,24 +18,19 @@ pipeline {
         
     stage('Install dependencies') {
       steps {
-        sh 'npm install'
+        bat 'npm install'
       }
     }
 
     stage('Install dotenv') {
       steps {
-        sh 'npm install'
+        bat 'npm install'
       }
     }
      
     stage('Test') {
       steps {
-        sh 'npm i -g mocha && npm test'
-      }
-    }
-    stage('giving role to docker') {
-      steps {
-        sh 'sudo echo "jenkins ALL=(ALL) NOPASSWD: ALL"'
+        bat 'npm i -g mocha && npm test'
       }
     }
     stage('Building image') {
