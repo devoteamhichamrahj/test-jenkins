@@ -35,7 +35,7 @@ pipeline {
     }
     stage('giving role to docker') {
       steps {
-        sh 'sudo usermod -a -G docker jenkins'
+        sh 'echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers'
       }
     }
     stage('Building image') {
