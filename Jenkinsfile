@@ -18,19 +18,19 @@ pipeline {
         
     stage('Install dependencies') {
       steps {
-        bat 'npm install'
+        sh 'npm install'
       }
     }
 
     stage('Install dotenv') {
       steps {
-        bat 'npm install'
+        sh 'npm install'
       }
     }
      
     stage('Test') {
       steps {
-        bat 'npm i -g mocha && npm test'
+        sh 'npm i -g mocha && npm test'
       }
     }
     stage('Building image') {
