@@ -6,7 +6,7 @@ pipeline {
   }
   agent any
     
-  tools {nodejs "nodejs"}
+  tools {nodejs "node js"}
     
   stages {
         
@@ -18,19 +18,19 @@ pipeline {
         
     stage('Install dependencies') {
       steps {
-        sh 'npm install'
+        bat 'npm install'
       }
     }
 
     stage('Install dotenv') {
       steps {
-        sh 'npm install'
+        bat 'npm install'
       }
     }
      
     stage('Test') {
       steps {
-        sh 'npm i -g mocha && npm test'
+        bat 'npm i -g mocha && npm test'
       }
     }
     stage('Building image') {
