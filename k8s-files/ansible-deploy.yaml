@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+    - name: deploy a web server
+      k8s:
+        state: present
+        definition: "{{ lookup('template', 'deploy.yaml') | from_yaml}}"
+        validate_certs: no
+    - name: expose a web server
+      k8s:
+        state: present
+        definition: "{{ lookup('template', 'svc.yaml') | from_yaml}}"
+        validate_certs: no
