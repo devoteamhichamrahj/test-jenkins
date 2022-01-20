@@ -1,0 +1,25 @@
+pipeline {
+  environment {
+    registry = "devohichamrahj/docker-test"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    image_id =  "devohichamrahj/docker-test:$BUILD_NUMBER"
+  }
+  agent any
+    
+  tools {nodejs "node js"}
+    
+  stages {
+        
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/devoteamhichamrahj/test-jenkins'
+      }
+    }
+    stage('deploy with ansible on kubernetes') {
+      steps{
+        bat "ansible-playbook  ./k8s-files/ansible-deploy.yaml --extra-vars \"image_id=${image_id}\""
+      }
+    }    
+  }
+}

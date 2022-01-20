@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "devohichamrahj/repo"
+    registry = "devohichamrahj/docker-test"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
@@ -12,7 +12,7 @@ pipeline {
         
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/devoteamhichamrahj/test-jenkins'
+        git 'https://github.com/ousshsn/authapp'
       }
     }
         
@@ -22,38 +22,35 @@ pipeline {
       }
     }
 
+    
     stage('Install dotenv') {
       steps {
-        bat 'npm install'
+        bat 'npm install -g win-node-env'
       }
     }
-     
     stage('Test') {
       steps {
-        bat 'npm i -g mocha && npm test'
+        bat 'npm test'
       }
     }
     stage('Building image') {
       steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
+          bat "docker build -t %registry%:%BUILD_NUMBER% ."
       }
     }
-    
     stage('Deploy Image') {
       steps{
          script {
             docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+            bat "docker push %registry%:%BUIlD_NUMBER%"
           }
         }
       }
     }
-    stage('Remove Unused docker image') {
+    stage('deploy with ansible on kubernetes') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "ansible-playbook  ./k8s-files/ansible-deploy.yaml --extra-vars \"image_id=${image_id}\""
       }
-    }      
+    }    
   }
 }
